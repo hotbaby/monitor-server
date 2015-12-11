@@ -41,7 +41,9 @@ class ClientUpdateHistory(Base):
     update_time = Column(DateTime)
     client_identity = Column(String(32), ForeignKey('client_info.identity'))
     
-    client = relationship('ClientInfo', backref=backref('client_update_history', order_by=update_time))
+    client = relationship('ClientInfo', backref=backref('client_update_history', 
+                                                                                        order_by=update_time, 
+                                                                                        cascade="all, delete, delete-orphan"))
     
     def __repr__(self):
         return '<ClientUpdateHistory(status=%d, update_tiem=%s)>' % (

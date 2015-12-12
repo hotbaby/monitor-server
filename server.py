@@ -161,7 +161,7 @@ class ClientHandler(BaseHander):
 
 def check_client_status_cb():
     logger.debug('Check clients status.')
-    expire_time = datetime.datetime.now() - timedelta(seconds=300)
+    expire_time = datetime.datetime.now() - timedelta(seconds=600)
     for client in session.query(ClientInfo).filter(ClientInfo.update_time <=  expire_time).all():
         client.status = ClientStatus.offline
     session.commit()

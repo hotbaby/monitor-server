@@ -51,5 +51,5 @@ class ClientUpdateHistory(Base):
 
 if __name__ == '__main__':
     print('Create tables')
-    create_all()
+    #create_all()
     print('Create tables successfully')

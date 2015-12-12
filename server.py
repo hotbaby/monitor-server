@@ -11,7 +11,6 @@ from enum import Enum
 
 from db import session
 from db import ClientInfo, ClientUpdateHistory
-from reportlab.lib.rparsexml import now
 
 logger = logging.getLogger('__main__')
 

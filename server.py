@@ -11,6 +11,7 @@ from enum import Enum
 
 from db import session
 from db import ClientInfo, ClientUpdateHistory
+from reportlab.lib.rparsexml import now
 
 logger = logging.getLogger('__main__')
 
@@ -152,6 +153,7 @@ class ClientHandler(BaseHander):
         now = datetime.datetime.now()
         if client.status != ClientStatus.online:
             client.status = ClientStatus.online
+        client.update_time = now
         update_info = ClientUpdateHistory(ip_addr=self.request.remote_ip, update_time=now)
         client.client_update_history.append(update_info)
         session.commit()

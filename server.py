@@ -103,7 +103,16 @@ class ClientHandler(BaseHander):
         identity = hmac.new(self.HMAC_KEY, name+str(client_type)+mac_addr).hexdigest()
         client = session.query(ClientInfo).filter_by(identity=identity).first()
         if client != None:
-            response = { 'result': 'client has existed'}
+            response = {
+            'identity': client.identity,
+            'name': client.name,    
+            'type': client.type,
+            'ip_addr': client.ip_addr,
+            'mac_addr': client.mac_addr,
+            'status': client.status,
+            'update_time': str(client.update_time),
+            }
+            self.set_status(409)
             self.write(json.dumps(response))
             return
         
